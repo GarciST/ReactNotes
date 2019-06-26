@@ -22,8 +22,6 @@ export const MainScene = () => {
 
 
     return (
-        <View>
             <LoginContainer />
-        </View>
     )
 }

@@ -1,55 +1,56 @@
 import * as React from 'react';
-import { View } from 'react-native';
-import { Button, Input, Text, ThemeProvider } from 'react-native-elements';
+import { View, StyleSheet } from 'react-native';
+import { Button, Input, Text } from 'react-native-elements';
 import { Icon } from 'react-native-elements'
 
 interface Props {
 
 }
 
-const theme = {
-    Input: {
-        maxWidth: 100
+const theme = StyleSheet.create({
+    signupButton: {
+        alignSelf: "center",
+        minWidth: 120
+    },
+    container: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'stretch',
     }
-}
+});
+
 
 export const LoginComponent = (props: Props) => {
     return (
-        <View>
-            <View>
-
-            </View>
-            <View>
-                <Input
-                    textContentType="username"
-                    placeholder="Username"
-                    leftIcon={
-                        <Icon
-                            name='person'
-                            type='material'
-                            size={24}
-                            color='black'
-                        />
-                    } />
-                <Input
-                    textContentType="password"
-                    secureTextEntry={true}
-                    placeholder="Password"
-                    leftIcon={
-                        <Icon
-                            name='lock'
-                            type='material'
-                            size={24}
-                            color='black'
-                        />
-                    } />
-                <Button
-                    title="Sign in"
-                    onPress={_ => { }} />
-                <Text
-                    
-                >Create an account</Text>
-            </View>
+        <View style={theme.container}>
+            <Input
+                textContentType="username"
+                placeholder="Username"
+                leftIcon={
+                    <Icon
+                        name='person'
+                        type='material'
+                        size={24}
+                        color='black'
+                    />
+                } />
+            <Input
+                textContentType="password"
+                secureTextEntry={true}
+                placeholder="Password"
+                leftIcon={
+                    <Icon
+                        name='lock'
+                        type='material'
+                        size={24}
+                        color='black'
+                    />
+                } />
+            <Button
+                title="Sign in"
+                onPress={_ => { }} />
+            <Text>Create an account</Text>
         </View>
     );
 }
