@@ -1,4 +1,4 @@
 import * as React from 'react';
 import { LoginComponent } from './';
 
-export const LoginContainer = (props: any) => (<LoginComponent></LoginComponent>)
+export const LoginContainer = () => (<LoginComponent></LoginComponent>)

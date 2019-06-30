@@ -2,11 +2,13 @@ import { registerAppComponents } from "./registerAppComponents";
 import { Navigation } from "react-native-navigation";
 import { defaultLayout } from "../layout";
 import { MainScene } from '../scenes';
+import { LoginScene } from '../scenes/login.scene';
 
 
 registerAppComponents([
   //Here the scenes
-  MainScene
+  MainScene,
+  LoginScene
 ])
 
 export const pushInit = () => {

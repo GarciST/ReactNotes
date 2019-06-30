@@ -1,25 +1,29 @@
 import * as React from 'react';
-import { View, Text, TextInput, Button, NativeSyntheticEvent, NativeTouchEvent } from 'react-native';
-import Parse from 'parse/react-native'
 import { LoginContainer } from '../pods/login';
+import { Navigation } from 'react-native-navigation';
+import { loginLayout } from '../layout';
+import { LoginScene } from './login.scene';
 
-export const MainScene = () => {
 
-    const [username, setUsername] = React.useState("");
-    const [password, setPassword] = React.useState("");
+interface Props{
+    componentId: string
+}
 
-    const logIn = (ev: NativeSyntheticEvent<NativeTouchEvent>) => {
+export const MainScene = (props: Props) => {
 
-        
-
-        Parse.User.logIn(username, password).then((user) => {
-            // Do stuff after successful login
-            console.log('Logged in user', user);
-        }).catch(error => {
-            console.error('Error while logging in user', error);
-        })
-    }
-
+    React.useEffect(() => {
+        //not login yet
+        Navigation.setStackRoot(
+            props.componentId,
+            {
+                component: {
+                    id: LoginScene.name,
+                    name: LoginScene.name,
+                    options: loginLayout
+                }
+            }
+        );
+    });
 
     return (
             <LoginContainer />
