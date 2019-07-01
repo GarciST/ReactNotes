@@ -14,4 +14,4 @@ export const loginLayout: Options = {
       orientation: ['portrait'],
       backgroundColor: themeStyle.BACKGROUND_COLOR
     }
-  }
+}

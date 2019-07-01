@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, GestureResponderEvent } from 'react-native';
 import { Button, Input, Text } from 'react-native-elements';
 import { Icon } from 'react-native-elements'
 
 interface Props {
-
+    openCreateAcount?: () => void
 }
 
 const theme = StyleSheet.create({
@@ -29,6 +29,10 @@ const theme = StyleSheet.create({
 
 
 export const LoginComponent = (props: Props) => {
+
+    const [usernameField, setUsernameField] = React.useState();
+
+
     return (
         <View style={theme.container}>
             <Icon
@@ -41,6 +45,8 @@ export const LoginComponent = (props: Props) => {
                 containerStyle={theme.formItems}
                 textContentType="username"
                 placeholder="Username"
+                returnKeyType="next"
+                onSubmitEditing={_ => usernameField.focus()}
                 leftIcon={
                     <Icon
                         name='person'
@@ -54,6 +60,7 @@ export const LoginComponent = (props: Props) => {
                 textContentType="password"
                 secureTextEntry={true}
                 placeholder="Password"
+                ref={setUsernameField}
                 leftIcon={
                     <Icon
                         name='lock'
@@ -68,6 +75,7 @@ export const LoginComponent = (props: Props) => {
                 onPress={_ => { }} />
             <Text
                 style={theme.createAccount}
+                onPress={props.openCreateAcount}
             >Create an account</Text>
         </View>
     );

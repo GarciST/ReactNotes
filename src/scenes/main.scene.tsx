@@ -26,6 +26,6 @@ export const MainScene = (props: Props) => {
     });
 
     return (
-            <LoginContainer />
+            <LoginContainer {...props} />
     )
 }
