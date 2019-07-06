@@ -2,10 +2,9 @@ import * as React from 'react';
 import { LoginContainer } from '../pods/login';
 import { Navigation } from 'react-native-navigation';
 import { loginLayout } from '../layout';
-import { LoginScene } from './login.scene';
 
 
-interface Props{
+interface Props {
     componentId: string
 }
 
@@ -15,17 +14,11 @@ export const MainScene = (props: Props) => {
         //not login yet
         Navigation.setStackRoot(
             props.componentId,
-            {
-                component: {
-                    id: LoginScene.name,
-                    name: LoginScene.name,
-                    options: loginLayout
-                }
-            }
+            loginLayout
         );
     });
 
     return (
-            <LoginContainer {...props} />
+        <LoginContainer {...props} />
     )
 }

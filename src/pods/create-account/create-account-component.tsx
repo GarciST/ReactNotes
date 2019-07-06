@@ -1,12 +1,28 @@
 import * as React from 'react';
 import { View, Text } from 'react-native';
-import { Input } from 'react-native-elements';
+import { Input, Button } from 'react-native-elements';
 
 export const CreateAccountComponent = () => {
     return(
         <View>
             <Input 
-                placeholder="Email" />
+                placeholder="Username"
+                leftIcon={{type: "material", name: "person"}} />
+            <Input 
+                placeholder="Email"
+                leftIcon={{type: "material", name: "email"}} />
+            <Input
+                placeholder="Password"
+                leftIcon={{type: "material", name: "lock"}} />
+            <Input
+                placeholder="Confim password"
+                leftIcon={{type: "material", name: "lock"}} />
+            <Input
+                placeholder="Name" />
+            <Input
+                placeholder="Last name" />
+            <Button
+                title="Sing up" />
         </View>
     )
 }

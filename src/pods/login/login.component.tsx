@@ -15,7 +15,8 @@ const theme = StyleSheet.create({
         marginBottom: 20
     },
     createAccount: {
-        marginTop: 30
+        padding: 30,
+        textDecorationLine: 'underline'
     },
     container: {
         flex: 1,
