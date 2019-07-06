@@ -6,11 +6,17 @@ export const CreateAccountComponent = () => {
     return(
         <View>
             <Input 
-                placeholder="Email" />
+                placeholder="Username"
+                leftIcon={{type: "material", name: "person"}} />
+            <Input 
+                placeholder="Email"
+                leftIcon={{type: "material", name: "email"}} />
             <Input
-                placeholder="Password" />
+                placeholder="Password"
+                leftIcon={{type: "material", name: "lock"}} />
             <Input
-                placeholder="Confim password" />
+                placeholder="Confim password"
+                leftIcon={{type: "material", name: "lock"}} />
             <Input
                 placeholder="Name" />
             <Input
