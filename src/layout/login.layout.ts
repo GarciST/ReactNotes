@@ -1,17 +1,11 @@
-import { Options } from "react-native-navigation";
-import themeStyle from "../styles/theme.style";
+import { Layout } from "react-native-navigation";
+import { LoginScene } from "../scenes/login.scene";
+import { loginOptions } from "./options/login.options";
 
-export const loginLayout: Options = {
-    topBar: { //removeTopBar
-        visible: false,
-        drawBehind: true,
-        animate: false,
-    },
-    statusBar: {
-      style: 'light'
-    },
-    layout: {
-      orientation: ['portrait'],
-      backgroundColor: themeStyle.BACKGROUND_COLOR
-    }
+export const loginLayout: Layout = {
+  component: {
+    id: LoginScene.name,
+    name: LoginScene.name,
+    options: {...loginOptions}
+  }
 }

@@ -2,7 +2,7 @@ import * as React from 'react';
 import { LoginComponent } from './';
 import { Navigation } from 'react-native-navigation';
 import { CreateAccountScene } from '../../scenes/create-account.scene';
-import { defaultLayout } from '../../layout/default.layout';
+import { defaultLayout } from '../../layout/options/default.options';
 
 interface Props {
     componentId: string;

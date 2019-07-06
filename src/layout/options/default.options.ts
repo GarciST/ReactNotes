@@ -1,7 +1,10 @@
 import { Options } from "react-native-navigation";
-import themeStyle from "../styles/theme.style";
+import themeStyle from "../../styles/theme.style";
 
-export const defaultLayout: Options = {
+/**
+ * Default options are applyed in {@link  pushInit}
+ */
+export const defaultOptions: Options = {
     topBar: {
       background: {
         color: themeStyle.PRIMARY_COLOR

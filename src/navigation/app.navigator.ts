@@ -1,6 +1,6 @@
 import { registerAppComponents } from "./registerAppComponents";
 import { Navigation } from "react-native-navigation";
-import { defaultLayout } from "../layout";
+import { defaultOptions } from "../layout";
 import { MainScene } from '../scenes';
 import { LoginScene } from '../scenes/login.scene';
 import { CreateAccountScene } from '../scenes/create-account.scene';
@@ -14,7 +14,7 @@ registerAppComponents([
 ])
 
 export const pushInit = () => {
-    Navigation.setDefaultOptions(defaultLayout)
+    Navigation.setDefaultOptions(defaultOptions);
 
       Navigation.setRoot({
         root: {

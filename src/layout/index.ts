@@ -1,2 +1,2 @@
-export * from './default.layout'
+export * from './options/default.options'
 export * from './login.layout'
