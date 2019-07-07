@@ -49,12 +49,12 @@ export const LoginComponent = (props: Props) => {
                 returnKeyType="next"
                 onSubmitEditing={_ => usernameField.focus()}
                 leftIcon={
-                    <Icon
-                        name='person'
-                        type='material'
-                        size={24}
-                        color='black'
-                    />
+                    {
+                        name: 'person',
+                        type: 'material',
+                        size: 24,
+                        color: 'black',
+                    }
                 } />
             <Input
                 containerStyle={theme.formItems}
@@ -63,12 +63,12 @@ export const LoginComponent = (props: Props) => {
                 placeholder="Password"
                 ref={setUsernameField}
                 leftIcon={
-                    <Icon
-                        name='lock'
-                        type='material'
-                        size={24}
-                        color='black'
-                    />
+                    {
+                        name: 'lock',
+                        type: 'material',
+                        size: 24,
+                        color: 'black',
+                    }
                 } />
             <Button
                 containerStyle={theme.signupButton}
