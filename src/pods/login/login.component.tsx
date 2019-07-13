@@ -28,11 +28,14 @@ const theme = StyleSheet.create({
     }
 });
 
+const onNextField = (input: React.RefObject<Input>):void => {
+    if(input && input.current) input.current.focus()
+}
+
 
 export const LoginComponent = (props: Props) => {
 
-    const [usernameField, setUsernameField] = React.useState();
-
+    const passwordField = React.useRef<Input>(null);
 
     return (
         <View style={theme.container}>
@@ -47,7 +50,7 @@ export const LoginComponent = (props: Props) => {
                 textContentType="username"
                 placeholder="Username"
                 returnKeyType="next"
-                onSubmitEditing={_ => usernameField.focus()}
+                onSubmitEditing={_ => onNextField(passwordField)}
                 leftIcon={
                     {
                         name: 'person',
@@ -61,7 +64,7 @@ export const LoginComponent = (props: Props) => {
                 textContentType="password"
                 secureTextEntry={true}
                 placeholder="Password"
-                ref={setUsernameField}
+                ref={passwordField}
                 leftIcon={
                     {
                         name: 'lock',

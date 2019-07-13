@@ -1,28 +1,24 @@
 import * as React from 'react';
-import { View } from 'react-native';
-import { Input, Button } from 'react-native-elements';
+import { View, StyleSheet, ViewStyle } from 'react-native';
+import { CreateAccountForm } from './components'
 
-export const CreateAccountComponent = () => {
+
+interface Styles {
+    trailer: ViewStyle;
+}
+
+interface Props {}
+
+const styles = StyleSheet.create<Styles>({
+    trailer: {
+        paddingHorizontal: 20
+    }
+});
+
+export const CreateAccountComponent = (props: Props) => {
     return(
-        <View>
-            <Input 
-                placeholder="Username"
-                leftIcon={{type: "material", name: "person"}} />
-            <Input 
-                placeholder="Email"
-                leftIcon={{type: "material", name: "email"}} />
-            <Input
-                placeholder="Password"
-                leftIcon={{type: "material", name: "lock"}} />
-            <Input
-                placeholder="Confim password"
-                leftIcon={{type: "material", name: "lock"}} />
-            <Input
-                placeholder="Name" />
-            <Input
-                placeholder="Last name" />
-            <Button
-                title="Sing up" />
+        <View style={styles.trailer}>
+            <CreateAccountForm />
         </View>
     )
 }
