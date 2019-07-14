@@ -3,21 +3,21 @@ import { View, StyleSheet, ViewStyle } from 'react-native';
 import { CreateAccountForm } from './components'
 
 
-interface Styles {
-    trailer: ViewStyle;
-}
-
 interface Props {}
 
-const styles = StyleSheet.create<Styles>({
-    trailer: {
-        paddingHorizontal: 20
+interface Styles {
+    container?: ViewStyle;
+}
+
+const style = StyleSheet.create<Styles>({
+    container: {
+        flex:1, flexDirection: "column"
     }
-});
+})
 
 export const CreateAccountComponent = (props: Props) => {
     return(
-        <View style={styles.trailer}>
+        <View style={style.container}>
             <CreateAccountForm />
         </View>
     )

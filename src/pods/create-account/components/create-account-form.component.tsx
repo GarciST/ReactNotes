@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { Input, Button } from 'react-native-elements';
-import { View, ViewStyle } from 'react-native';
+import { Input, Button, Divider } from 'react-native-elements';
+import { ViewStyle, StyleSheet, ScrollView } from 'react-native';
+import themeStyle from '../../../styles/theme.style';
 
 interface IProps {
     trailerStyle?: ViewStyle
@@ -8,82 +9,138 @@ interface IProps {
     buttonStyle?: ViewStyle
 }
 
+interface Styles {
+    submitContainer?: ViewStyle;
+    submitButton?: ViewStyle;
+    formInput?: ViewStyle;
+    trailerStyle?: ViewStyle;
+    divider?: ViewStyle;
+}
+
+const style = StyleSheet.create<Styles>({
+    submitButton: {
+        minWidth: 200
+    },
+    submitContainer: {
+        padding: 30,
+        justifyContent: "space-between",
+        flexDirection: "column",
+        alignItems: 'center',
+    },
+    formInput: {
+        marginBottom: 40,
+        justifyContent: "space-between",
+        flexDirection: "row",
+        alignItems: 'center',
+    },
+    trailerStyle: {
+        paddingHorizontal: "5%",
+    },
+    divider: {
+        height: 2,
+        backgroundColor: themeStyle.PRIMARY_COLOR,
+        marginBottom: 20,
+    }
+})
+
 const onNextField = (input: React.RefObject<Input>): void => {
     if (input && input.current) input.current.focus()
 }
 
+const onSignUp = () => {
+    
+}
+
 export const CreateAccountForm = (props: IProps): JSX.Element => {
 
-    const username = React.useRef<Input>(null);
-    const email = React.useRef<Input>(null);
-    const password = React.useRef<Input>(null);
-    const confirmPassword = React.useRef<Input>(null);
-    const name = React.useRef<Input>(null);
-    const lastname = React.useRef<Input>(null);
+    const [username, setUsername] = React.useState("");
+    const [email, setEmail] = React.useState("");
+    const [password, setPassword] = React.useState("");
+    const [confirmPassword, setConfirmPassword] = React.useState("");
+    const [name, setName] = React.useState("");
+    const [lastname, setLastname] = React.useState("");
+
+    const usernameInput = React.useRef<Input>(null);
+    const emailInput = React.useRef<Input>(null);
+    const passwordInput = React.useRef<Input>(null);
+    const confirmPasswordInput = React.useRef<Input>(null);
+    const nameInput = React.useRef<Input>(null);
+    const lastnameInput = React.useRef<Input>(null);
 
 
     return (
-        <View style={props.trailerStyle}>
+        <ScrollView contentContainerStyle={[props.trailerStyle, style.trailerStyle]}>
             <Input
-                ref={username}
+                ref={usernameInput}
                 placeholder="Username"
-                textContentType="username"
                 returnKeyType="next"
                 autoFocus={true}
                 leftIcon={{ type: "material", name: "person" }}
-                style={props.inputStyle}
+                containerStyle={[props.inputStyle, style.formInput]}
                 errorStyle={{ color: 'red' }}
-                errorMessage='ENTER A VALID ERROR HERE'
-                onSubmitEditing={_ => onNextField(email)} />
+                keyboardAppearance="light"
+                blurOnSubmit={false}
+                onChangeText={setUsername}
+                onSubmitEditing={_ => onNextField(emailInput)} />
             <Input
-                ref={email}
+                ref={emailInput}
                 placeholder="Email"
                 keyboardType="email-address"
-                textContentType="emailAddress"
                 returnKeyType="next"
                 leftIcon={{ type: "material", name: "email" }}
-                style={props.inputStyle}
+                containerStyle={[props.inputStyle, style.formInput]}
                 errorStyle={{ color: 'red' }}
                 autoCapitalize="none"
-                errorMessage='ENTER A VALID ERROR HERE'
-                onSubmitEditing={_ => onNextField(password)} />
+                keyboardAppearance="light"
+                onChangeText={setEmail}
+                blurOnSubmit={true}
+                onSubmitEditing={_ => onNextField(passwordInput)} />
             <Input
-                ref={password}
+                ref={passwordInput}
                 placeholder="Password"
-                textContentType="newPassword"
                 secureTextEntry={true}
                 returnKeyType="next"
                 leftIcon={{ type: "material", name: "lock" }}
-                style={props.inputStyle}
+                containerStyle={[props.inputStyle, style.formInput]}
                 errorStyle={{ color: 'red' }}
                 autoCapitalize="none"
-                errorMessage='ENTER A VALID ERROR HERE'
-                onSubmitEditing={_ => onNextField(confirmPassword)} />
+                keyboardAppearance="light"
+                blurOnSubmit={true}
+                onChangeText={setPassword}
+                onSubmitEditing={_ => onNextField(confirmPasswordInput)} />
             <Input
-                ref={confirmPassword}
+                ref={confirmPasswordInput}
                 placeholder="Confim password"
-                textContentType="password"
                 secureTextEntry={true}
                 returnKeyType="next"
                 leftIcon={{ type: "material", name: "lock" }}
-                style={props.inputStyle}
+                containerStyle={[props.inputStyle, style.formInput]}
                 autoCapitalize="none"
+                keyboardAppearance="light"
+                blurOnSubmit={false}
                 errorStyle={{ color: 'red' }}
-                errorMessage='ENTER A VALID ERROR HERE'
-                onSubmitEditing={_ => onNextField(name)} />
+                onChangeText={setConfirmPassword}
+                onSubmitEditing={_ => onNextField(nameInput)} />
+            <Divider style={[style.divider]} />
             <Input
                 placeholder="Name"
                 returnKeyType="next"
-                ref={name}
-                style={props.inputStyle}
-                onSubmitEditing={_ => onNextField(lastname)} />
+                ref={nameInput}
+                containerStyle={[props.inputStyle, style.formInput]}
+                blurOnSubmit={false}
+                onChangeText={setName}
+                onSubmitEditing={_ => onNextField(lastnameInput)} />
             <Input
                 placeholder="Last name"
-                ref={lastname}
-                style={props.inputStyle} />
+                ref={lastnameInput}
+                blurOnSubmit={true}
+                onChangeText={setLastname}
+                returnKeyType="done"
+                containerStyle={[props.inputStyle, style.formInput]} />
             <Button
                 title="Sing up"
-                style={props.buttonStyle} />
-        </View>
+                containerStyle={[style.submitContainer]}
+                buttonStyle={[props.buttonStyle, style.submitButton]} />
+        </ScrollView>
     );
 }
