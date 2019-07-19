@@ -1,12 +1,13 @@
 import * as React from 'react';
 import { Input, Button, Divider } from 'react-native-elements';
-import { ViewStyle, StyleSheet, ScrollView } from 'react-native';
+import { ViewStyle, StyleSheet, ScrollView, TextInputChangeEventData, NativeSyntheticEvent } from 'react-native';
 import themeStyle from '../../../styles/theme.style';
+import { CreateAccountEntity } from '../create-account.model';
 
-interface IProps {
-    trailerStyle?: ViewStyle
-    inputStyle?: ViewStyle
-    buttonStyle?: ViewStyle
+interface Props {
+    accountInfo: CreateAccountEntity;
+    onSignUp?: () => void;
+    onUpdateField?: (account: CreateAccountEntity) => void;
 }
 
 interface Styles {
@@ -47,18 +48,10 @@ const onNextField = (input: React.RefObject<Input>): void => {
     if (input && input.current) input.current.focus()
 }
 
-const onSignUp = () => {
-    
-}
 
-export const CreateAccountForm = (props: IProps): JSX.Element => {
 
-    const [username, setUsername] = React.useState("");
-    const [email, setEmail] = React.useState("");
-    const [password, setPassword] = React.useState("");
-    const [confirmPassword, setConfirmPassword] = React.useState("");
-    const [name, setName] = React.useState("");
-    const [lastname, setLastname] = React.useState("");
+
+export const CreateAccountForm = (props: Props): JSX.Element => {
 
     const usernameInput = React.useRef<Input>(null);
     const emailInput = React.useRef<Input>(null);
@@ -67,20 +60,33 @@ export const CreateAccountForm = (props: IProps): JSX.Element => {
     const nameInput = React.useRef<Input>(null);
     const lastnameInput = React.useRef<Input>(null);
 
+    const { accountInfo, onSignUp, onUpdateField } = props;
+
+    const onTextFieldChange = (event: NativeSyntheticEvent<TextInputChangeEventData>): void =>{
+        const { text, target } = event.nativeEvent;
+        console.log(event.nativeEvent)
+        onUpdateField ? onUpdateField({
+            ...accountInfo,
+            [target]: text
+        }) : undefined
+    }
+
 
     return (
-        <ScrollView contentContainerStyle={[props.trailerStyle, style.trailerStyle]}>
+        <ScrollView contentContainerStyle={[style.trailerStyle]}>
             <Input
                 ref={usernameInput}
+                key="username"
                 placeholder="Username"
                 returnKeyType="next"
                 autoFocus={true}
                 leftIcon={{ type: "material", name: "person" }}
-                containerStyle={[props.inputStyle, style.formInput]}
+                containerStyle={[style.formInput]}
                 errorStyle={{ color: 'red' }}
                 keyboardAppearance="light"
                 blurOnSubmit={false}
-                onChangeText={setUsername}
+                value={accountInfo.username}
+                onChange={onTextFieldChange}
                 onSubmitEditing={_ => onNextField(emailInput)} />
             <Input
                 ref={emailInput}
@@ -88,11 +94,12 @@ export const CreateAccountForm = (props: IProps): JSX.Element => {
                 keyboardType="email-address"
                 returnKeyType="next"
                 leftIcon={{ type: "material", name: "email" }}
-                containerStyle={[props.inputStyle, style.formInput]}
+                containerStyle={[style.formInput]}
                 errorStyle={{ color: 'red' }}
                 autoCapitalize="none"
                 keyboardAppearance="light"
-                onChangeText={setEmail}
+                value={accountInfo.email}
+                onChange={onTextFieldChange}
                 blurOnSubmit={true}
                 onSubmitEditing={_ => onNextField(passwordInput)} />
             <Input
@@ -101,12 +108,13 @@ export const CreateAccountForm = (props: IProps): JSX.Element => {
                 secureTextEntry={true}
                 returnKeyType="next"
                 leftIcon={{ type: "material", name: "lock" }}
-                containerStyle={[props.inputStyle, style.formInput]}
+                containerStyle={[style.formInput]}
                 errorStyle={{ color: 'red' }}
                 autoCapitalize="none"
                 keyboardAppearance="light"
                 blurOnSubmit={true}
-                onChangeText={setPassword}
+                value={accountInfo.password}
+                onChange={onTextFieldChange}
                 onSubmitEditing={_ => onNextField(confirmPasswordInput)} />
             <Input
                 ref={confirmPasswordInput}
@@ -114,33 +122,37 @@ export const CreateAccountForm = (props: IProps): JSX.Element => {
                 secureTextEntry={true}
                 returnKeyType="next"
                 leftIcon={{ type: "material", name: "lock" }}
-                containerStyle={[props.inputStyle, style.formInput]}
+                containerStyle={[style.formInput]}
                 autoCapitalize="none"
                 keyboardAppearance="light"
                 blurOnSubmit={false}
                 errorStyle={{ color: 'red' }}
-                onChangeText={setConfirmPassword}
+                value={accountInfo.confirmPassword}
+                onChange={onTextFieldChange}
                 onSubmitEditing={_ => onNextField(nameInput)} />
             <Divider style={[style.divider]} />
             <Input
                 placeholder="Name"
                 returnKeyType="next"
                 ref={nameInput}
-                containerStyle={[props.inputStyle, style.formInput]}
+                containerStyle={[style.formInput]}
                 blurOnSubmit={false}
-                onChangeText={setName}
+                value={accountInfo.name}
+                onChange={onTextFieldChange}
                 onSubmitEditing={_ => onNextField(lastnameInput)} />
             <Input
                 placeholder="Last name"
                 ref={lastnameInput}
                 blurOnSubmit={true}
-                onChangeText={setLastname}
+                value={accountInfo.lastname}
+                onChange={onTextFieldChange}
                 returnKeyType="done"
-                containerStyle={[props.inputStyle, style.formInput]} />
+                containerStyle={[style.formInput]} />
             <Button
                 title="Sing up"
                 containerStyle={[style.submitContainer]}
-                buttonStyle={[props.buttonStyle, style.submitButton]} />
+                buttonStyle={[style.submitButton]}
+                onPress={onSignUp} />
         </ScrollView>
     );
 }

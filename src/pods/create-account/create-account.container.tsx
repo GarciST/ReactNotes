@@ -5,4 +5,11 @@ interface Props{
     componentId: string;    
 }
 
-export const CreateAccountContainer = (props: Props) => (<CreateAccountComponent />);
+export const CreateAccountContainer = (props: Props) => {
+
+    
+
+    return(
+        <CreateAccountComponent />
+    );
+}
