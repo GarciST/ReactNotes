@@ -1,24 +1,60 @@
 import * as React from 'react';
 import { View, StyleSheet, ViewStyle } from 'react-native';
 import { CreateAccountForm } from './components'
+import { createEmptyAccount, CreateAccountEntity } from './create-account.model';
 
 
-interface Styles {
-    trailer: ViewStyle;
+interface Props {
+    onSignUp: (account: CreateAccountEntity) => void;
 }
 
-interface Props {}
+interface State {
+    accountInfo: CreateAccountEntity;
+    showLoginFailed: boolean;
+}
 
-const styles = StyleSheet.create<Styles>({
-    trailer: {
-        paddingHorizontal: 20
+interface Styles {
+    container?: ViewStyle;
+}
+
+const style = StyleSheet.create<Styles>({
+    container: {
+        flex: 1, flexDirection: "column"
     }
-});
+})
+
 
 export const CreateAccountComponent = (props: Props) => {
-    return(
-        <View style={styles.trailer}>
-            <CreateAccountForm />
+
+    const { onSignUp } = props;
+
+    const onSignUpButton = (): void => onSignUp({ ...state.accountInfo })
+
+    const [state, setState] = React.useState<State>({
+        accountInfo: createEmptyAccount(),
+        showLoginFailed: false,
+    });
+
+    React.useEffect(() => {
+        console.log(state);
+    }, [state])
+
+    const onUpdateField = (account: CreateAccountEntity) => {
+        console.log(account);
+        setState({
+            ...state,
+            accountInfo: {
+                ...account
+            }
+        })
+    }
+
+    return (
+        <View style={style.container}>
+            <CreateAccountForm
+                accountInfo={state.accountInfo}
+                onSignUp={onSignUpButton}
+                onUpdateField={onUpdateField} />
         </View>
     )
 }

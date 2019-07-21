@@ -35,7 +35,7 @@ const onNextField = (input: React.RefObject<Input>):void => {
 
 export const LoginComponent = (props: Props) => {
 
-    const passwordField = React.useRef<Input>(null);
+    const passwordInput = React.useRef<Input>(null);
 
     return (
         <View style={theme.container}>
@@ -50,7 +50,7 @@ export const LoginComponent = (props: Props) => {
                 textContentType="username"
                 placeholder="Username"
                 returnKeyType="next"
-                onSubmitEditing={_ => onNextField(passwordField)}
+                onSubmitEditing={_ => onNextField(passwordInput)}
                 leftIcon={
                     {
                         name: 'person',
@@ -64,7 +64,7 @@ export const LoginComponent = (props: Props) => {
                 textContentType="password"
                 secureTextEntry={true}
                 placeholder="Password"
-                ref={passwordField}
+                ref={passwordInput}
                 leftIcon={
                     {
                         name: 'lock',
