@@ -4,7 +4,9 @@ import { CreateAccountForm } from './components'
 import { createEmptyAccount, CreateAccountEntity } from './create-account.model';
 
 
-interface Props { }
+interface Props {
+    onSignUp: (account: CreateAccountEntity) => void;
+}
 
 interface State {
     accountInfo: CreateAccountEntity;
@@ -21,30 +23,38 @@ const style = StyleSheet.create<Styles>({
     }
 })
 
+
 export const CreateAccountComponent = (props: Props) => {
+
+    const { onSignUp } = props;
+
+    const onSignUpButton = (): void => onSignUp({ ...state.accountInfo })
 
     const [state, setState] = React.useState<State>({
         accountInfo: createEmptyAccount(),
         showLoginFailed: false,
     });
 
-    const onSignUp = () => {
-
-    }
+    React.useEffect(() => {
+        console.log(state);
+    }, [state])
 
     const onUpdateField = (account: CreateAccountEntity) => {
+        console.log(account);
         setState({
             ...state,
             accountInfo: {
                 ...account
             }
-        }) 
-        console.log(state);
+        })
     }
 
     return (
         <View style={style.container}>
-            <CreateAccountForm accountInfo={state.accountInfo} onSignUp={onSignUp} onUpdateField={onUpdateField} />
+            <CreateAccountForm
+                accountInfo={state.accountInfo}
+                onSignUp={onSignUpButton}
+                onUpdateField={onUpdateField} />
         </View>
     )
 }
