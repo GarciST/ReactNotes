@@ -2,9 +2,11 @@ import * as React from 'react';
 import { LoginComponent } from './';
 import { Navigation } from 'react-native-navigation';
 import { createAccountLayout } from '../../layout'
+import { SessionContext } from '../../core';
 
 interface Props {
     componentId: string;
+    username?: any;
 }
 
 
