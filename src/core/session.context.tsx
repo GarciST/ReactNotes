@@ -1,17 +1,17 @@
 import * as React from 'react';
 
 export interface UserContextProps {
-    _id: number;
-    username: string;
-    email: string;
+    _id: string;
+    username: string | undefined;
+    email: string | undefined;
     //Optional
     name?: string;
     lastname?: string;
-    updateUser: (user: UserContextProps) => void;
+    updateUser?: (user: UserContextProps) => void;
 }
 
 export const createDefaultUser = (): UserContextProps => ({
-    _id: 0,
+    _id: "",
     username: "hola username",
     email: "",
     updateUser: user => {
