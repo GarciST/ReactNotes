@@ -1,6 +1,6 @@
 import { UserContextProps } from '../'
 
-export const ParseUserContextMapping = (user: Parse.User): UserContextProps  => ({
+export const parseUserContextMapping = (user: Parse.User): UserContextProps  => ({
     _id: user.id,
     email: user.getEmail(),
     username: user.getUsername(),
