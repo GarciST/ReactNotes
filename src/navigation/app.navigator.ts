@@ -4,10 +4,12 @@ import { defaultOptions } from "../layout";
 import { MainScene } from '../scenes';
 import { LoginScene } from '../scenes/login.scene';
 import { CreateAccountScene } from '../scenes/create-account.scene';
+import { SplashScene } from '../scenes/splash.scene';
 
 
 registerAppComponents([
   //Here the registered scenes
+  SplashScene,
   MainScene,
   LoginScene,
   CreateAccountScene
