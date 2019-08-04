@@ -9,9 +9,9 @@
   },
   "dependencies": {
     "@types/parse": "^2.2.5",
-    "parse": "^2.4.0",
+    "parse": "^2.5.1",
     "react": "16.8.3",
-    "react-native": "0.59.9",
+    "react-native": "^0.60.4",
     "react-native-elements": "^1.1.0",
     "react-native-navigation": "^2.21.1",
     "react-native-vector-icons": "^6.5.0"
