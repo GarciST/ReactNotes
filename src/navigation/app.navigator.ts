@@ -5,6 +5,7 @@ import { MainScene } from '../scenes';
 import { LoginScene } from '../scenes/login.scene';
 import { CreateAccountScene } from '../scenes/create-account.scene';
 import { SplashScene } from '../scenes/splash.scene';
+import { splashOptions } from "../layout/options";
 
 
 registerAppComponents([
@@ -23,18 +24,8 @@ export const pushInit = () => {
           stack: {
             children: [{
               component: {
-                name: MainScene.name,
-                options: {
-                  topBar: {
-                    visible: true,
-                    title: {
-                      text: "Home Screen"
-                    }
-                  },
-                  statusBar: {
-                    style: 'dark'
-                  }
-                }
+                name: SplashScene.name,
+                options: { ...splashOptions }
               }
             }]
           }

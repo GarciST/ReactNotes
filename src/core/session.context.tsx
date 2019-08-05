@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { _login } from './parse/login.parse';
+import { _login, _currentSession } from './parse/session.parse';
 
 export interface UserContextProps {
   _id: string;
@@ -9,7 +9,6 @@ export interface UserContextProps {
   name?: string;
   lastname?: string;
   updateUser?: (user: UserContextProps) => void;
-  isLogin: () => boolean;
 }
 
 export const userLogin = async (userLogin: { email: string, password: string }): Promise<UserContextProps> => (
@@ -22,23 +21,26 @@ export const userLogin = async (userLogin: { email: string, password: string }):
   })
 )
 
-export const createDefaultUser = (): UserContextProps => ({
+export const userCurrent = (): UserContextProps => {
+  let current = _currentSession();
+  return current ? current : createDefaultUser();
+}
+
+const createDefaultUser = (): UserContextProps => ({
   _id: "",
   username: "",
   email: "",
   updateUser: user => {
     console.warn("Empty user");
   },
-  isLogin: () => false
 });
 
 export const SessionContext = React.createContext(
-  createDefaultUser()
+  userCurrent()
 );
 
 export const SessionProvider: React.StatelessComponent = props => {
   const [user, setUser] = React.useState<UserContextProps>(createDefaultUser());
-
   return (
     <SessionContext.Provider value={{ ...user, updateUser: setUser }}>
       {props.children}

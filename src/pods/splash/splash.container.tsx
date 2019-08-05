@@ -8,12 +8,12 @@ interface Props {
 
 export const SplashContainer = (props: Props) => {
 
-    const context = React.useContext(SessionContext)
+    
     
 
     return(
         <View>
-            <Text>${SplashContainer.name}</Text>
+            <Text>{SplashContainer.name}</Text>
         </View>
     )
 }

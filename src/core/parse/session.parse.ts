@@ -7,3 +7,8 @@ export const _login = async (userLogin: {email: string, password: string}): Prom
     return parseUser.logIn()
         .then(user => parseUserContextMapping(user));
 }
+
+export const _currentSession = (): UserContextProps | undefined => {
+    let current = Parse.User.current();
+    return current ? parseUserContextMapping(current) : undefined
+}
