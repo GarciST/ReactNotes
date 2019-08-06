@@ -1,5 +1,6 @@
 import { UserContextProps } from '../session.context';
 import { parseUserContextMapping } from './user.mapper';
+import * as Parse from 'parse';
 export const _login = async (userLogin: {email: string, password: string}): Promise<UserContextProps> => {
     let parseUser = new Parse.User();
     parseUser.set("email", userLogin.email);
