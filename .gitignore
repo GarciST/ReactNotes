@@ -75,5 +75,3 @@ RNTester/build
 /template/ios/Pods/
 /template/ios/Podfile.lock
 RNTester/RNTesterPods.xcworkspace/xcshareddata/IDEWorkspaceChecks.plist
-ios/SyncNotes/Info.plist
-ios/SyncNotes/Info.plist
