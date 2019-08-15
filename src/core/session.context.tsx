@@ -15,7 +15,7 @@ export interface UserContextProps {
   updateUser?: (user: UserContextProps) => void;
 }
 
-export const initContext = async () => _initialize();
+export const initContext = _initialize();
 
 export const userLogin = async (userLogin: { email: string, password: string }): Promise<UserContextProps> => (
   /**
@@ -27,8 +27,8 @@ export const userLogin = async (userLogin: { email: string, password: string }):
   })
 )
 
-export const userCurrent = (): UserContextProps => {
-  let current = _currentSession();
+export const userCurrent = async(): Promise<UserContextProps> => {
+  let current = await _currentSession();
   return current ? current : createDefaultUser();
 }
 
@@ -42,11 +42,11 @@ const createDefaultUser = (): UserContextProps => ({
 });
 
 export const SessionContext = React.createContext(
-  userCurrent()
+  createDefaultUser()
 );
 
 export const SessionProvider: React.StatelessComponent = props => {
-  const [user, setUser] = React.useState<UserContextProps>(userCurrent());
+  const [user, setUser] = React.useState<UserContextProps>(createDefaultUser());
   React.useEffect(() => {
     if(user._id)
       Navigation.setRoot({
