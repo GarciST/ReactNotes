@@ -1,16 +1,21 @@
 import * as React from 'react';
-import { _login } from './parse/login.parse';
+import { _login, _currentSession } from './parse/session.mapper';
+import { Navigation } from 'react-native-navigation';
+import { LoginScene } from '../scenes/login.scene';
+import { loginOptions } from '../layout/options';
+import { _initialize } from './parse/initialize.mapper';
 
 export interface UserContextProps {
-  _id: string;
+  _id: string | undefined;
   username: string | undefined;
   email: string | undefined;
   //Optional
   name?: string;
   lastname?: string;
   updateUser?: (user: UserContextProps) => void;
-  isLogin: () => boolean;
 }
+
+export const initContext = _initialize();
 
 export const userLogin = async (userLogin: { email: string, password: string }): Promise<UserContextProps> => (
   /**
@@ -22,14 +27,18 @@ export const userLogin = async (userLogin: { email: string, password: string }):
   })
 )
 
-export const createDefaultUser = (): UserContextProps => ({
-  _id: "",
-  username: "",
-  email: "",
+export const userCurrent = async(): Promise<UserContextProps> => {
+  let current = await _currentSession();
+  return current ? current : createDefaultUser();
+}
+
+const createDefaultUser = (): UserContextProps => ({
+  _id: undefined,
+  username: undefined,
+  email: undefined,
   updateUser: user => {
     console.warn("Empty user");
   },
-  isLogin: () => false
 });
 
 export const SessionContext = React.createContext(
@@ -38,7 +47,21 @@ export const SessionContext = React.createContext(
 
 export const SessionProvider: React.StatelessComponent = props => {
   const [user, setUser] = React.useState<UserContextProps>(createDefaultUser());
-
+  React.useEffect(() => {
+    if(user._id)
+      Navigation.setRoot({
+        root: {
+          stack: {
+            children: [{
+              component: {
+                name: LoginScene.name,
+                options: { ...loginOptions }
+              }
+            }]
+          }
+        }
+      })
+  }, [user])
   return (
     <SessionContext.Provider value={{ ...user, updateUser: setUser }}>
       {props.children}

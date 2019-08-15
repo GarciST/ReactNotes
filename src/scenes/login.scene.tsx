@@ -8,8 +8,6 @@ interface Props {
 
 export const LoginScene = (props: Props) => {
     return (
-        <SessionProvider>
             <LoginContainer {...props} />
-        </SessionProvider>
     )
 }
