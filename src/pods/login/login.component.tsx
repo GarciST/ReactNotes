@@ -4,7 +4,8 @@ import { Button, Input, Text } from 'react-native-elements';
 import { Icon } from 'react-native-elements'
 
 interface Props {
-    openCreateAcount?: () => void
+    openCreateAcount?: () => void,
+    signIn?: () => void,
 }
 
 const theme = StyleSheet.create({
@@ -76,7 +77,7 @@ export const LoginComponent = (props: Props) => {
             <Button
                 containerStyle={theme.signupButton}
                 title="Sign in"
-                onPress={_ => { }} />
+                onPress={props.signIn} />
             <Text
                 style={theme.createAccount}
                 onPress={props.openCreateAcount}

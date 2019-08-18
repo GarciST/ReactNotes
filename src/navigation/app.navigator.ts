@@ -6,6 +6,10 @@ import { LoginScene } from '../scenes/login.scene';
 import { CreateAccountScene } from '../scenes/create-account.scene';
 import { SplashScene } from '../scenes/splash.scene';
 import { splashOptions } from "../layout/options";
+import { initContext } from "../core";
+
+
+initContext();
 
 
 registerAppComponents([
