@@ -3,22 +3,25 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "start": "react-native start",
     "android": "cd ./android && ./gradlew app:assembleDebug && ./gradlew installDebug",
-    "test": "jest"
+    "test": "jest",
+    "lint":"eslint"
   },
   "dependencies": {
-    "@types/parse": "^2.2.5",
+    "@react-native-community/async-storage": "^1.6.1",
     "core-js": "^3.2.1",
     "events": "^3.0.0",
+    "fsevents": "^2.0.7",
     "parse": "^2.6.0",
     "react": "^16.8.6",
-    "react-native": "^0.60",
+    "react-native": "^0.60.0",
     "react-native-elements": "^1.1.0",
     "react-native-navigation": "^3.0.0",
     "react-native-vector-icons": "^6.6.0"
   },
   "devDependencies": {
+    "@types/parse": "^2.2.5",
     "@babel/core": "^7.5.5",
     "@babel/runtime": "^7.5.5",
     "@types/jest": "^24.0.15",

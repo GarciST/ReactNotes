@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { SplashContainer } from '../pods/splash/splash.container';
-import { SessionProvider } from '../core/session.context';
+import { SessionProvider, UserContextProps } from '../core/session.context';
 
-interface Props {
+interface Props extends UserContextProps {
     componentId: string;
 }
 
